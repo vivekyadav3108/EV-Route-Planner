@@ -31,7 +31,6 @@ export default function GoogleMapComponent({
   batteryLevel = 80,
   vehicleModel = "tesla-model-3",
 }) {
-  // Use the environment variable for the API key
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "",
     libraries: libraries as any,

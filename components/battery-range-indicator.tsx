@@ -3,11 +3,20 @@
 import { Battery, Zap } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
-import { getRangeEstimate } from "@/data/india-ev-models"
 
 export default function BatteryRangeIndicator({ batteryLevel, vehicleModel }) {
-  // Get range estimate based on selected vehicle and battery level
-  const currentRange = getRangeEstimate(vehicleModel, batteryLevel)
+  // Mock vehicle range data (miles per % of battery)
+  const vehicleRanges = {
+    "tesla-model-3": 3.75, // 375 miles / 100%
+    "tesla-model-y": 3.3, // 330 miles / 100%
+    "chevy-bolt": 2.59, // 259 miles / 100%
+    "nissan-leaf": 2.12, // 212 miles / 100%
+    "ford-mach-e": 3.0, // 300 miles / 100%
+  }
+
+  // Get vehicle range
+  const rangePerPercent = vehicleRanges[vehicleModel] || 3.0 // Default to 300 miles range
+  const currentRange = Math.round(batteryLevel * rangePerPercent)
 
   // Determine battery color based on level
   const getBatteryColor = () => {

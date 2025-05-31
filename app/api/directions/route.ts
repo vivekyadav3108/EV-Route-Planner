@@ -9,7 +9,6 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: "Origin and destination parameters are required" }, { status: 400 })
   }
 
-  // Use the environment variable for the API key
   const apiKey = process.env.GOOGLE_MAPS_API_KEY
   if (!apiKey) {
     return NextResponse.json({ error: "Google Maps API key is not configured" }, { status: 500 })
